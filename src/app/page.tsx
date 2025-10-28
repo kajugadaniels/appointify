@@ -5,7 +5,6 @@ import Hero from '@/components/landing/Hero'
 import HowItWorks from '@/components/landing/HowItWorks'
 import PricingSection from '@/components/landing/PricingSection'
 import WhatToAsk from '@/components/landing/WhatToAsk'
-import React from 'react'
 
 const Home = () => {
     return (
