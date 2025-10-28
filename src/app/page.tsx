@@ -1,20 +1,22 @@
-import { Button } from "@/components/ui/button"
-import { SignedIn, SignedOut, SignOutButton, SignUpButton } from "@clerk/nextjs"
+import CTA from '@/components/landing/CTA'
+import Header from '@/components/landing/Header'
+import Hero from '@/components/landing/Hero'
+import HowItWorks from '@/components/landing/HowItWorks'
+import PricingSection from '@/components/landing/PricingSection'
+import WhatToAsk from '@/components/landing/WhatToAsk'
+import React from 'react'
+import { Footer } from 'react-day-picker'
 
 const Home = () => {
     return (
-        <div>
-            <SignedOut>
-                <SignUpButton mode="modal">
-                    <Button>Sign Up</Button>
-                </SignUpButton>
-            </SignedOut>
-
-            <SignedIn>
-                <SignOutButton>
-                    <Button>Sign Out</Button>
-                </SignOutButton>
-            </SignedIn>
+        <div className='min-h-screen bg-background'>
+            <Header />
+            <Hero />
+            <HowItWorks />
+            <WhatToAsk />
+            <PricingSection />
+            <CTA />
+            <Footer />
         </div>
     )
 }
