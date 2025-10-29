@@ -2,6 +2,7 @@ import ActivityOverview from '@/components/dashboard/ActivityOverview'
 import MainActions from '@/components/dashboard/MainActions'
 import WelcomeSection from '@/components/dashboard/WelcomeSection'
 import Navbar from '@/components/Navbar'
+import Footer from '@/components/landing/Footer'
 
 const Dashboard = () => {
     return (
@@ -13,6 +14,8 @@ const Dashboard = () => {
                 <MainActions />
                 <ActivityOverview />
             </div>
+
+            <Footer />
         </>
     )
 }
