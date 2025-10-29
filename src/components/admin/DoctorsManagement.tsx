@@ -40,7 +40,7 @@ function DoctorsManagement() {
 
                     <Button
                         onClick={() => setIsAddDialogOpen(true)}
-                        className="bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/100"
+                        className="bg-linear-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/100"
                     >
                         <PlusIcon className="mr-2 size-4" />
                         Add Doctor
