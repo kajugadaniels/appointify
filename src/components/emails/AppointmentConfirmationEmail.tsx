@@ -39,10 +39,10 @@ function AppointmentConfirmationEmail({
                             src="https://i.ibb.co.com/tRy6cC2/logo.png"
                             width="50"
                             height="50"
-                            alt="DentWise"
+                            alt="Appointify"
                             style={logo}
                         />
-                        <Text style={logoText}>DentWise</Text>
+                        <Text style={logoText}>Appointify</Text>
                     </Section>
 
                     <Heading style={h1}>Appointment Confirmed! 🦷</Heading>
@@ -90,7 +90,7 @@ function AppointmentConfirmationEmail({
                     <Text style={footer}>
                         Best regards,
                         <br />
-                        The DentWise Team
+                        The Appointify Team
                     </Text>
 
                     <Text style={footerText}>
