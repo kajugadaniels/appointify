@@ -4,14 +4,31 @@ import { useUser } from "@clerk/nextjs";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { vapi } from "@/lib/vapi";
-import { Button } from "../ui/button";
-import { Card } from "../ui/card";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+interface Message {
+  content: string;
+  role: string;
+}
+
+interface TranscriptMessage {
+  type: string;
+  transcriptType?: string;
+  transcript: string;
+  role: string;
+}
+
+interface VapiError {
+  message?: string;
+  code?: string;
+}
 
 function VapiWidget() {
   const [callActive, setCallActive] = useState(false);
   const [connecting, setConnecting] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
-  const [messages, setMessages] = useState<any[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [callEnded, setCallEnded] = useState(false);
 
   const { user, isLoaded } = useUser();
@@ -52,14 +69,14 @@ function VapiWidget() {
       setIsSpeaking(false);
     };
 
-    const handleMessage = (message: any) => {
+    const handleMessage = (message: TranscriptMessage) => {
       if (message.type === "transcript" && message.transcriptType === "final") {
-        const newMessage = { content: message.transcript, role: message.role };
+        const newMessage: Message = { content: message.transcript, role: message.role };
         setMessages((prev) => [...prev, newMessage]);
       }
     };
 
-    const handleError = (error: any) => {
+    const handleError = (error: VapiError) => {
       console.log("Vapi Error", error);
       setConnecting(false);
       setCallActive(false);
@@ -199,13 +216,15 @@ function VapiWidget() {
           <div className="aspect-video flex flex-col items-center justify-center p-6 relative">
             {/* User Image */}
             <div className="relative size-32 mb-4">
-              <Image
-                src={user?.imageUrl!}
-                alt="User"
-                width={128}
-                height={128}
-                className="size-full object-cover rounded-full"
-              />
+              {user?.imageUrl && (
+                <Image
+                  src={user.imageUrl}
+                  alt="User"
+                  width={128}
+                  height={128}
+                  className="size-full object-cover rounded-full"
+                />
+              )}
             </div>
 
             <h2 className="text-xl font-bold text-foreground">You</h2>
@@ -263,10 +282,10 @@ function VapiWidget() {
       <div className="w-full flex justify-center gap-4">
         <Button
           className={`w-44 text-xl rounded-3xl ${callActive
-              ? "bg-destructive hover:bg-destructive/90"
-              : callEnded
-                ? "bg-red-500 hover:bg-red-700"
-                : "bg-primary hover:bg-primary/90"
+            ? "bg-destructive hover:bg-destructive/90"
+            : callEnded
+              ? "bg-red-500 hover:bg-red-700"
+              : "bg-primary hover:bg-primary/90"
             } text-white relative`}
           onClick={toggleCall}
           disabled={connecting || callEnded}
