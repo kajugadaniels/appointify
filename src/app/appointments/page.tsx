@@ -22,7 +22,7 @@ interface BookedAppointment {
   patientEmail: string;
   date: string;
   time: string;
-  reason?: string;
+  reason?: string | null;
 }
 
 function Appointments() {
