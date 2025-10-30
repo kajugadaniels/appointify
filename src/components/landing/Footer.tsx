@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 function Footer() {
   return (
@@ -25,19 +26,19 @@ function Footer() {
             <h4 className="font-medium mb-3">Product</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="/" className="hover:text-foreground">
+                <Link href="/" className="hover:text-foreground">
                   How it works
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/" className="hover:text-foreground">
+                <Link href="/" className="hover:text-foreground">
                   Pricing
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/" className="hover:text-foreground">
+                <Link href="/" className="hover:text-foreground">
                   FAQ
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -46,19 +47,19 @@ function Footer() {
             <h4 className="font-medium mb-3">Support</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="/" className="hover:text-foreground">
+                <Link href="/" className="hover:text-foreground">
                   Help center
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/" className="hover:text-foreground">
+                <Link href="/" className="hover:text-foreground">
                   Contact us
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/" className="hover:text-foreground">
+                <Link href="/" className="hover:text-foreground">
                   Status
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -67,19 +68,19 @@ function Footer() {
             <h4 className="font-medium mb-3">Legal</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="/" className="hover:text-foreground">
+                <Link href="/" className="hover:text-foreground">
                   Privacy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/" className="hover:text-foreground">
+                <Link href="/" className="hover:text-foreground">
                   Terms
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/" className="hover:text-foreground">
+                <Link href="/" className="hover:text-foreground">
                   Security
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
