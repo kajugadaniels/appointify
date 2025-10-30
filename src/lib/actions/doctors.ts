@@ -5,6 +5,13 @@ import { revalidatePath } from "next/cache";
 import { prisma } from "../prisma";
 import { generateAvatar } from "../utils";
 
+interface PrismaError {
+  code?: string;
+  meta?: {
+    target?: string[];
+  };
+}
+
 export async function getDoctors() {
   try {
     const doctors = await prisma.doctor.findMany({
@@ -48,11 +55,11 @@ export async function createDoctor(input: CreateDoctorInput) {
     revalidatePath("/admin");
 
     return doctor;
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error creating doctor:", error);
 
     // handle unique constraint violation (email already exists)
-    if (error?.code === "P2002") {
+    if (isPrismaError(error) && error.code === "P2002") {
       throw new Error("A doctor with this email already exists");
     }
 
@@ -128,4 +135,14 @@ export async function getAvailableDoctors() {
     console.error("Error fetching available doctors:", error);
     throw new Error("Failed to fetch available doctors");
   }
+}
+
+// Type guard to check if error is a Prisma error
+function isPrismaError(error: unknown): error is PrismaError {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    typeof (error as PrismaError).code === "string"
+  );
 }
