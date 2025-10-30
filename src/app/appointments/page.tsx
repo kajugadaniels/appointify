@@ -16,6 +16,15 @@ import {
 } from "@/hooks/use-appointment";
 import { APPOINTMENT_TYPES } from "@/lib/utils";
 
+interface BookedAppointment {
+  id: string;
+  doctorName: string;
+  patientEmail: string;
+  date: string;
+  time: string;
+  reason?: string;
+}
+
 function Appointments() {
   // state management for the booking process - this could be done with something like Zustand for larger apps
   const [selectedDentistId, setSelectedDentistId] = useState<string | null>(
@@ -26,7 +35,7 @@ function Appointments() {
   const [selectedType, setSelectedType] = useState("");
   const [currentStep, setCurrentStep] = useState(1); // 1: select dentist, 2: select time, 3: confirm
   const [showConfirmationModal, setShowConfirmationModal] = useState(false);
-  const [bookedAppointment, setBookedAppointment] = useState<any>(null);
+  const [bookedAppointment, setBookedAppointment] = useState<BookedAppointment | null>(null);
 
   const bookAppointmentMutation = useBookAppointment();
   const { data: userAppointments = [] } = useUserAppointments();
