@@ -4,7 +4,44 @@ import { auth } from "@clerk/nextjs/server";
 import type { AppointmentStatus } from "@prisma/client";
 import { prisma } from "../prisma";
 
-function transformAppointment(appointment: any) {
+interface TransformedAppointment {
+  id: string;
+  userId: string;
+  doctorId: string;
+  date: string;
+  time: string;
+  reason?: string | null;
+  status: AppointmentStatus;
+  createdAt: Date;
+  updatedAt: Date;
+  patientName: string;
+  patientEmail: string;
+  doctorName: string;
+  doctorImageUrl: string;
+}
+
+interface AppointmentWithRelations {
+  id: string;
+  userId: string;
+  doctorId: string;
+  date: Date;
+  time: string;
+  reason?: string | null;
+  status: AppointmentStatus;
+  createdAt: Date;
+  updatedAt: Date;
+  user: {
+    firstName: string | null;
+    lastName: string | null;
+    email: string;
+  };
+  doctor: {
+    name: string;
+    imageUrl: string | null;
+  };
+}
+
+function transformAppointment(appointment: AppointmentWithRelations): TransformedAppointment {
   return {
     ...appointment,
     patientName:
