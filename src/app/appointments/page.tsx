@@ -1,6 +1,7 @@
 "use client";
 
 import { format } from "date-fns";
+import Image from "next/image";
 import { useState } from "react";
 import { toast } from "sonner";
 import { AppointmentConfirmationModal } from "@/components/appointments/AppointmentConfirmationModal";
@@ -14,7 +15,6 @@ import {
   useUserAppointments,
 } from "@/hooks/use-appointment";
 import { APPOINTMENT_TYPES } from "@/lib/utils";
-import Image from "next/image";
 
 function Appointments() {
   // state management for the booking process - this could be done with something like Zustand for larger apps
